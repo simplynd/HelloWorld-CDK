@@ -38,5 +38,12 @@ jobs:
         run: cdk bootstrap
       - name: Deploy to AWS
         run: cdk deploy --app="python3 ${PWD}/app.py" --require-approval=never
+        id: cdk_deploy
+      - name: test output
+        env:
+          CDK_OUTPUT: ${{ steps.cdk_deploy.outputs }}
+        run: echo "CDK Output is $CDK_OUTPUT"
+
+        
       # - name: Destroy stack
       #   run: cdk destroy --app="python3 ${PWD}/cdk/my_service/app.py" --force

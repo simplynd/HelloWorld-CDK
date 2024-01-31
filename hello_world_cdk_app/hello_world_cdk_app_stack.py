@@ -1,7 +1,8 @@
 from constructs import Construct
 from aws_cdk import (
     Stack,
-    aws_lambda as _lambda
+    aws_lambda as _lambda,
+    CfnOutput
 )
 
 
@@ -17,3 +18,6 @@ class HelloWorldCdkAppStack(Stack):
             code=_lambda.Code.from_asset('lambda'), # Directory where code is taken from
             handler='hello.handler', # Filename.method (hello.py for lambda code and handler is the method that will execute first as entry point)
         )
+
+        CfnOutput(self, "LambdaARN", value= my_lambda.function_arn)
+        CfnOutput(self, "FunctionName", value= my_lambda.function_name)
