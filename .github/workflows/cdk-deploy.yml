@@ -40,7 +40,7 @@ jobs:
         run: cdk deploy --app="python3 ${PWD}/app.py" --require-approval=never
 
       - name: Get Lambda Function Name
-        run: echo "::set-output name=FunctionName:: $(aws cloudformation describe-stacks --region us-east-2 --query "Stacks[?StackName=='HelloWorldCdkAppStack'][].Outputs[?OutputKey=='FunctionName'].OutputValue" --output text )"
+        run: echo "::set-output name=FunctionName::$(aws cloudformation describe-stacks --region us-east-2 --query "Stacks[?StackName=='HelloWorldCdkAppStack'][].Outputs[?OutputKey=='FunctionName'].OutputValue" --output text)"
         id: get-fn-name
 
       - name: Print Function Name
