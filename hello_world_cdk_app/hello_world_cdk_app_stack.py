@@ -13,7 +13,7 @@ class HelloWorldCdkAppStack(Stack):
         # Defines an AWS Lambda resource
         my_lambda = _lambda.Function(
             self, 'HelloHandler',
-            runtime=_lambda.Runtime.PYTHON_3_7,
+            runtime=_lambda.Runtime.PYTHON_3_12,
             code=_lambda.Code.from_asset('lambda'), # Directory where code is taken from
             handler='hello.handler', # Filename.method (hello.py for lambda code and handler is the method that will execute first as entry point)
         )
