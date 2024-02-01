@@ -2,7 +2,7 @@ import json
 
 def handler(event, context):
     print('request: {}'.format(json.dumps(event)))
-    print('context: {}'.context)
+    print('context: {}'.format(context))
     return {
         'statusCode': 200,
         'headers': {
