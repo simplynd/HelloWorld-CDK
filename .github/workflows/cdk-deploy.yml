@@ -48,7 +48,8 @@ jobs:
 
       - name: Update API for Lambda Integration
         run: |
-          sed -e 's,MY_LAMBDA_FUNCTION,'${{ steps.get-fn-name.outputs.FunctionName }}',g' < ${PWD}/api/hello-api.yaml
+          # sed -e 's,MY_LAMBDA_FUNCTION,'${{ steps.get-fn-name.outputs.FunctionName }}',g' < ${PWD}/api/hello-api.yaml
+          sed 's/MY_LAMBDA_FUNCTION/${{ steps.get-fn-name.outputs.FunctionName }}/' ${PWD}/api/hello-api.yaml
           cat ${PWD}/api/hello-api.yaml
 
       - name: Deploy API to Sandbox
