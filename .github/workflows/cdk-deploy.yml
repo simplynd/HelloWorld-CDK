@@ -50,3 +50,14 @@ jobs:
         run: |
           sed -e 's,MY_LAMBDA_FUNCTION,'${{ steps.get-fn-name.outputs.FunctionName }}',g' < ${PWD}/api/hello-api.yaml
           cat ${PWD}/api/hello-api.yaml
+
+      - name: Deploy API to Sandbox
+        uses: ibm-apiconnect/actions@main
+        with:
+          manager-host: api-manager.us-east-a.apiconnect.automation.ibm.com
+          api-host: platform-api.us-east-a.apiconnect.automation.ibm.com
+          provider-org: 'demo-advanced'
+          catalog: 'sandbox'
+          apikey: ${{ secrets.apikey }}
+          product-file: '${PWD}/api/hello-product.yaml'
+          migrate_subscriptions: 'true'
