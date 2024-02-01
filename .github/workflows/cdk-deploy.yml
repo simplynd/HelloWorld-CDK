@@ -46,5 +46,7 @@ jobs:
       - name: Print Function Name
         run: echo ${{ steps.get-fn-name.outputs.FunctionName }}
 
-      # - name: Destroy stack
-      #   run: cdk destroy --app="python3 ${PWD}/cdk/my_service/app.py" --force
+      - name: Update API for Lambda Integration
+        run: |
+          sed -e 's,MY_LAMBDA_FUNCTION,'${{ steps.get-fn-name.outputs.FunctionName }}',g' < ${PWD}/api/hello-api.yaml
+          cat ${PWD}/api/hello-api.yaml

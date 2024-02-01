@@ -1,0 +1,51 @@
+swagger: '2.0'
+info:
+  title: Hello
+  x-ibm-name: hello
+  version: 1.0.0
+  description: 'BMO POC '
+basePath: /hello
+paths:
+  /:
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+securityDefinitions:
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+  - clientID: []
+schemes:
+  - https
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+      - aws-lambda:
+          version: 1.0.0
+          title: aws-lambda
+          aws_assume_role_arn: arn:aws:iam::767397810036:role/APIC_Lambda_Execution_role
+          aws_region: us-east-2
+          function_name: "MY_LAMBDA_FUNCTION"
+  properties:
+    target-url:
+      value: http://example.com/operation-name
+      description: The URL of the target service
+      encoded: false
+  activity-log:
+    enabled: true
+    success-content: activity
+    error-content: payload
