@@ -1,7 +1,7 @@
 info:
   version: 1.0.0
-  title: Hello-ND
-  name: hello-nd
+  title: Hello-World
+  name: hello-world
 gateways:
   - datapower-api-gateway
 plans:
