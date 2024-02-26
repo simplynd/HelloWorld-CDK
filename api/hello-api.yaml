@@ -3,7 +3,7 @@ info:
   title: Hello
   x-ibm-name: hello
   version: 1.0.0
-  description: 'BMO POC '
+  description: 'BMO POC'
 basePath: /hello
 paths:
   /:
